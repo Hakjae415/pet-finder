@@ -29,14 +29,14 @@ app.get('/pets/:name', (req, res) => {
     }
 });
 
-app.get('/pets/owner', (req, res) => {
+app.get('/owner', (req, res) => {
     const ownerName = req.query.owner;
     const ownerPet = pets.filter((pet) => pet.owner === ownerName)
 
     if (ownerPet.length > 0) {
         const petsName = ownerPet.map((pet) => pet.name)
         const owner = `
-            Owner: ${ownerPet[0].owner}
+            Owner: ${ownerPet[0].owner}</br>
             Owner's Pet's: ${petsName.join(', ')}
         `
         res.send(owner)
@@ -44,6 +44,7 @@ app.get('/pets/owner', (req, res) => {
         res.status(404).send({ error: "Owner not found"});
     }
 })
+
 
 const PORT = 1337;
 app.listen(PORT, () => {
