@@ -34,10 +34,10 @@ app.get('/pets/owner', (req, res) => {
     const ownerPet = pets.filter((pet) => pet.owner === ownerName)
 
     if (ownerPet.length > 0) {
-        const pets = ownerPet.map((pet) => pet.name)
+        const petsName = ownerPet.map((pet) => pet.name)
         const owner = `
-            Owner: ${ownerPet.owner}
-            Owner's Pet's: ${pets.join(', ')}
+            Owner: ${ownerPet[0].owner}
+            Owner's Pet's: ${petsName.join(', ')}
         `
         res.send(owner)
     } else {
